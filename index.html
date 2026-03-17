@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tapşırıqlara nəzarət sistemi</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Tapşırıqlara nəzarət sistemi</h1>
+
+    <section class="panel form-panel">
+      <h2>Yeni tapşırıq</h2>
+      <form id="task-form">
+        <input type="hidden" id="edit-id" />
+        <div class="grid">
+          <label>
+            Struktur vahidi
+            <select id="unit" required></select>
+          </label>
+          <label>
+            Müdir
+            <input id="manager" required placeholder="Müdirin adı" />
+          </label>
+          <label>
+            Tapşırıq başlığı
+            <input id="title" required placeholder="Məsələn: Hesabatın hazırlanması" />
+          </label>
+          <label>
+            Təsvir
+            <input id="description" required placeholder="Qısa təsvir" />
+          </label>
+          <label>
+            Verilmə tarixi
+            <input id="assignedDate" type="date" required />
+          </label>
+          <label>
+            Son tarix
+            <input id="dueDate" type="date" required />
+          </label>
+          <label>
+            Status
+            <select id="status" required>
+              <option value="pending">İcrada</option>
+              <option value="completed">İcra olunub</option>
+              <option value="not_completed">İcra olunmayıb</option>
+            </select>
+          </label>
+        </div>
+        <div class="buttons">
+          <button type="submit">SAVE</button>
+          <button type="button" id="reset-btn">Təmizlə</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="header-row">
+        <h2>Tapşırıqlar</h2>
+        <div class="buttons">
+          <button id="report-btn" type="button">Şöbələr üzrə hesabat</button>
+          <button id="stats-btn" type="button">Statistik icmal (diaqram)</button>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Struktur</th>
+            <th>Müdir</th>
+            <th>Başlıq</th>
+            <th>Verilmə</th>
+            <th>Son tarix</th>
+            <th>Status</th>
+            <th>Əməliyyat</th>
+          </tr>
+        </thead>
+        <tbody id="task-body"></tbody>
+      </table>
+      <p class="legend">
+        <span class="badge yellow"></span> Vaxtı yaxınlaşır (≤2 gün)
+        <span class="badge green"></span> İcra olunub
+        <span class="badge red"></span> Vaxtı bitib və icra olunmayıb
+      </p>
+    </section>
+
+    <section class="panel hidden" id="report-panel">
+      <h2>Şöbələr üzrə ümumi hesabat</h2>
+      <div id="report-content"></div>
+    </section>
+
+    <section class="panel hidden" id="stats-panel">
+      <h2>Diaqram şəklində statistik icmal</h2>
+      <canvas id="stats-canvas" width="700" height="300"></canvas>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
